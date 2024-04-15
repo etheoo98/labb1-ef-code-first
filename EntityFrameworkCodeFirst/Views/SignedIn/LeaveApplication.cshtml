@@ -1,0 +1,26 @@
+﻿@model List<EntityFrameworkCodeFirst.Models.DatabaseModels.LeaveApplicationReason>
+@{
+    ViewData["Title"] = "New Leave Application";
+}
+<form method="post" asp-action="LeaveApplication" asp-controller="SignedIn" class="mx-auto d-block" style="max-width: 600px">
+    <h2 class="fs-2 mb-3">New Leave Application</h2>
+    
+    @Html.DropDownList("LeaveApplicationReasonId", new SelectList(Model, "Id", "Reason"), "Select a reason", new { @class = "form-select mb-3" })
+
+    <div class="d-flex gap-3 mb-3">
+        <div class="flex-grow-1">
+            <label class="form-label" for="StartDate">Start Date</label>
+            <input type="date" id="StartDate" name="StartDate" class="form-control">
+        </div>
+        <div class="flex-grow-1">
+            <label class="form-label" for="StartDate">End Date</label>
+            <input type="date" id="EndDate" name="EndDate" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="Note">Note (optional)</label>
+        <textarea class="form-control" id="Note" name="Note" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>

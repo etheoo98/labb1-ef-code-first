@@ -1,0 +1,62 @@
+﻿@* TODO: Use a view model instead. Then use DisplayNameFor in the labels *@
+@model List<EntityFrameworkCodeFirst.Models.DTOs.LeaveApplicationDto>
+
+@{
+    ViewData["Title"] = "All Leave Applications";
+    var counter = 1;
+}
+
+<h2 class="fs-2 mb-3">All Leave Applications</h2>
+
+<form method="post" asp-action="AllLeaveApplications" asp-controller="SignedIn" class="d-block mb-3" style="max-width: 600px">
+    <h3 class="text-dark fs-4">Filters</h3>
+    <div class="d-flex gap-3 mb-3">
+        <div class="flex-grow-1">
+            <label class="form-label" for="StartDate">Start Date</label>
+            <input type="date" id="StartDate" name="StartDate" class="form-control">
+        </div>
+        
+        <div class="flex-grow-1">
+            <label class="form-label" for="StartDate">Start Date</label>
+            <input type="date" id="EndDate" name="EndDate" class="form-control">
+        </div>
+        
+        <button type="submit" class="btn btn-primary h-25 mt-auto">Apply</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Employee</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Note</th>
+        <th scope="col">Creation Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var leaveApplication in Model)
+    {
+        <tr>
+            <th scope="row">@counter</th>
+            <td>@leaveApplication.EmployeeName</td>
+            <td>@leaveApplication.LeaveApplicationReason</td>
+            <td>@leaveApplication.StartDate.ToShortDateString()</td>
+            <td>@leaveApplication.EndDate.ToShortDateString()</td>
+            <td>@if (leaveApplication.Note != null)
+                {
+                    @leaveApplication.Note
+                }
+                else
+                {
+                    <i>None Provided</i>
+                }</td>
+            <td>@leaveApplication.CreationDate.ToShortDateString()</td>
+        </tr>
+        counter++;
+    }
+    </tbody>
+</table>

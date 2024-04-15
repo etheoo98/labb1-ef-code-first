@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model EntityFrameworkCodeFirst.Models.ViewModels.SignInViewModel
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<form method="post" asp-action="SignIn" asp-controller="Home" class="mx-auto d-block" style="max-width: 400px">
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="email">@Html.DisplayNameFor(model => model.Email)</label>
+        <input type="email" id="email" name="email" class="form-control"/>
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+
+    <!-- Password input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="password">@Html.DisplayNameFor(model => model.Password)</label>
+        <input type="password" id="password" name="password" class="form-control"/>
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary w-100">Sign In</button>
+</form>

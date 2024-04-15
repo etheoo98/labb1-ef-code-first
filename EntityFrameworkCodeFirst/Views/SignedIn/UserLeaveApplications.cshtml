@@ -1,0 +1,33 @@
+﻿@* TODO: Use a view model instead. Then use DisplayNameFor in the labels *@
+@model List<EntityFrameworkCodeFirst.Models.DTOs.LeaveApplicationDto>
+
+@{
+    ViewData["Title"] = "My Leave Applications";
+    var counter = 1;
+}
+
+<h2 class="fs-2 mb-3">My Leave Applications</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Leave Reason</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var leaveApplication in Model)
+    {
+        <tr>
+            <th scope="row">@counter</th>
+            <td>@leaveApplication.LeaveApplicationReason</td>
+            <td>@leaveApplication.StartDate.ToShortDateString()</td>
+            <td>@leaveApplication.EndDate.ToShortDateString()</td>
+            <td>@leaveApplication.Note</td>
+        </tr>
+        counter++;
+    }
+    </tbody>
+</table>
