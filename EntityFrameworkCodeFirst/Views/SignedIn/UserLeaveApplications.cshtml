@@ -25,7 +25,7 @@
             <td>@leaveApplication.LeaveApplicationReason</td>
             <td>@leaveApplication.StartDate.ToShortDateString()</td>
             <td>@leaveApplication.EndDate.ToShortDateString()</td>
-            <td>@leaveApplication.Note</td>
+            <td>@Html.Raw(leaveApplication.Note ?? "<i>None Provided</i>")</td>
         </tr>
         counter++;
     }
